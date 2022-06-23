@@ -4,8 +4,6 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 import './index.css';
 import { BrowserRouter} from 'react-router-dom';
-import {ApiProvider} from '@reduxjs/toolkit/query/react'
-import { apiUserSlice } from './reducers/apiUserSlice';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
@@ -13,12 +11,10 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
   <BrowserRouter>
-  {/* <Provider store={store}> */}
-  <ApiProvider api={apiUserSlice}>
+ <Provider store={store}>
      <App />
-  </ApiProvider>
-    
-{/*   </Provider> */}
+
+  </Provider> 
      
    
     
