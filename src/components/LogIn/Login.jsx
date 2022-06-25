@@ -10,21 +10,21 @@ import styles from './Login.module.css'
 
 const Login = () => {
     const dispatch = useDispatch()
-    const { user, isLoading, isError, isSuccess, message } = useSelector(
-        (state) => state.auth   )
+    const {user, isLoading, isError, isSuccess, message } = useSelector(
+        (state) => state.auth)
     const navigate = useNavigate()    
         
     React.useEffect(() => {
-        if (isError) {
+        if (isError !== false) {
          alert(message)
         }
     
-        if (isSuccess || user) {
+        if (isSuccess && user !== null) {
           navigate('/')
         }
     
-        dispatch(reset())
-      }, [user, isError, isSuccess, message, navigate, dispatch])
+     /*    dispatch(reset()) */
+      }, [user, isError, isSuccess, message, navigate])
         
     const [input, setInput] = useState({
     email: '',
@@ -37,9 +37,10 @@ const Login = () => {
         const newForm = { ...input, [name]: value };
         setInput(newForm);
     };
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault()
         dispatch(login(input))
+       
       }
 
 
