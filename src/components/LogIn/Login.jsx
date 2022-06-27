@@ -1,9 +1,8 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useState } from 'react'
-
+import Swal from 'sweetalert2'
 import CSSModules from 'react-css-modules'
-import img from '../../assets/carefree-african-american-man-listening-music-headphones-singing-mobile-phone-as-microphone-standing-pink-background_1258-77231.jpg'
 import { login, reset } from '../../reducers/auth/authSlice'
 import { Link, useNavigate } from 'react-router-dom'
 import styles from './Login.module.css'
@@ -18,11 +17,23 @@ const Login = () => {
     const navigate = useNavigate()    
         
     React.useEffect(() => {
+
+    dispatch(reset())
         if (isError) {
-         alert(message)
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: message
+          })
         }
     
         if (isSuccess && user !== null) {
+          Swal.fire({
+            icon: 'success',
+            title: 'You have successfully logged in',
+            showConfirmButton: false,
+            timer: 1500
+          })
           navigate('/')
           dispatch(reset())
         }
@@ -34,6 +45,12 @@ const Login = () => {
     password: ''
     })
 
+    const [isActive, setIsActive] = useState(true);
+    
+    const onClick = () => {
+      setIsActive(current => !current);
+      setTimeout(() =>{ navigate('/register')},2000)
+    }
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -49,9 +66,8 @@ const Login = () => {
 
 
 
-
   return (
-    <div className={styles.container}>
+    <div className={isActive ? styles.container: `${styles.animateContainer}`}>
        <div className={styles.formsContainer}>
         <div className={styles.signinSignup}>
             <form className={styles.signInForm}>
@@ -72,23 +88,19 @@ const Login = () => {
         </form>
         </div>
         <div className={styles.panelsContainer}>
-        <div className={`${styles.panel} ${styles.leftPanel}`}>
+        <div className={ `${styles.panel} ${styles.leftPanel}`}>
 
 
             <div className={styles.content}>
               <h3>New here?</h3>
-              <p>Lorem ipsum dolor sit amet consectetur
-                 adipisicing elit. Enim ipsa recusandae quos laboriosam. 
-                 Esse quasi sed repellat deleniti, molestias explicabo l
-                 audantium culpa id eos expedita labore poss
-                imus alias? Ducimus, enim.</p>
+              <p>Sign up and start to upload all your music!</p>
                 
                   
-                  <Link to={'/register'}>
-                    <button className={`${styles.btn} ${styles.transparent}`}>
+          {/*          <Link to={'/register'}>  */}
+                    <button className={`${styles.btn} ${styles.transparent}`} onClick={() => onClick()} id="sign-up-btn">
                   Register
                       </button>
-                      </Link>
+                 {/*       </Link>  */}
                   
             
             </div>

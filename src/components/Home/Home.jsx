@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { reset } from '../../reducers/auth/authSlice'
 
 
 
@@ -7,7 +8,9 @@ import { useSelector, useDispatch } from 'react-redux'
 function Home() {
     const dispatch = useDispatch()
     const user = useSelector(state=> state.auth.user)
-
+React.useEffect(() => {
+  dispatch(reset())
+})
 
   return (
     <div>

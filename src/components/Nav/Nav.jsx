@@ -12,19 +12,22 @@ function Nav() {
 
   return (
     <header className={styles.mainHeader}>
-      <section>
+      <section className={styles.sectionTitle}>
         <h1>remixUp</h1>
       </section>
-      
+      <section className={styles.sectionLinks}>
+
       <nav className={styles.nav}>
         <div className={styles.containerLinks}>
-            <Link to={'/profile'} style={{cursor: 'pointer', color:'white'}}>Profile</Link>
+            <Link to={'/register'}  className={styles.span}>Register</Link>
             {
-                user ? <span style={{cursor: 'pointer'}} onClick={()=> dispatch(logout())}>LogOut</span> : <Link to={'/login'} style={{cursor: 'pointer',color:'white'}}>LogIn</Link>
+                user ? <span className={styles.span} onClick={()=> dispatch(logout())}>LogOut</span> 
+                : <Link to={'/login'}  className={styles.span}>Log In</Link>
             }
             
      </div>
     </nav>
+      </section>
     </header>
     
   )
