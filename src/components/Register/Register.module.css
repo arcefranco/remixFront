@@ -1,0 +1,10 @@
+.formContainer{
+    display: flex;
+    place-content: center;
+    margin-top: 14rem;
+}
+.input{
+    padding: 1rem;
+    width: 20rem;
+    margin: 10px;
+}
