@@ -3,17 +3,9 @@ import { createSlice } from "@reduxjs/toolkit/dist";
 import { createAsyncThunk } from "@reduxjs/toolkit/dist";
 import authService from "./authService";
 import { User } from "../../components/types/User";
-
+import { UserState } from "../../components/types/UserState";
 // Get user from localStorage
 const user = JSON.parse(localStorage.getItem("user") as string);
-
-interface UserState {
-  user?: string;
-  isError: boolean;
-  isSuccess: boolean;
-  isLoading: boolean;
-  message: string;
-}
 
 const initialState: UserState = {
   user: user ? user : null,
@@ -86,7 +78,6 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = JSON.stringify(action.payload);
-        state.user = "";
       })
       .addCase(getMe.pending, (state) => {
         state.isLoading = true;
@@ -100,7 +91,6 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = JSON.stringify(action.payload);
-        state.user = "";
       })
       .addCase(logout.pending, (state) => {
         state.isLoading = true;
@@ -108,13 +98,11 @@ export const authSlice = createSlice({
       .addCase(logout.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.user = "";
       })
       .addCase(logout.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = JSON.stringify(action.payload);
-        state.user = "";
       })
       .addCase(register.pending, (state) => {
         state.isLoading = true;
@@ -128,7 +116,6 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = JSON.stringify(action.payload);
-        state.user = "";
       });
   },
 });
