@@ -11,7 +11,7 @@ function App() {
     <div>
       <Nav />
       <Routes>
-        <h1>hola</h1>
+        <h1>hola1</h1>
         <Route path="/" element={<Home />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
