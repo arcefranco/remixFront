@@ -9,7 +9,7 @@ import React from "react";
 function App() {
   return (
     <div>
-      <h1>deploy prueba</h1>
+      <h1>deploy1 prueba</h1>
       <Nav />
       <Routes>
         <Route path="/" element={<Home />}></Route>
