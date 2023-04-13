@@ -16,10 +16,10 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-      - uses: sudo actions/checkout@v3
+      - name: Checkout repository
+        run: sudo actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         run: |
           sudo apt-get update
           sudo apt-get install -y nodejs
           sudo npm install -g npm
-
