@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        run: echo "password" | sudo -S actions/checkout@v2 --user username --password password
+        run: echo "password" | sudo -S -u username -H sh -c "cd ~/actions-runner/_work && ./actions/checkout@v2"
       - name: Use Node.js ${{ matrix.node-version }}
         run: |
           sudo -S apt-get update --user username --password password
