@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        run:  sudo -S actions/checkout@v2
+        run:  sudo -S actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         run: |
           sudo -S apt-get update 
